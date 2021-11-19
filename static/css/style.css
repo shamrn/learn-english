@@ -1,0 +1,29 @@
+/*  ------------------------ SECTION BASIC SETTINGS  ----------------------  */
+
+@font-face {
+    font-family: 'Igra Sans';
+    src: url('../font/IgraSans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+html{
+    font-family: 'Igra Sans';
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+ul{
+
+    list-style: none;
+}

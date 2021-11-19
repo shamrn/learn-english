@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'create_translation' %}">Добавить</a>
+{% for type in types %}
+<a href="{% url 'list_translation' type  %}">{{ type }}</a>
+{% endfor %}
+{% endblock %}
