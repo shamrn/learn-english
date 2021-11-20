@@ -5,17 +5,17 @@ class Translation(models.Model):
     """Модель Translation"""
 
     class TranslationType(models.IntegerChoices):
-        WORD: int = 0, 'Слова'
-        Sentence: int = 1, 'Предложения'
+        WORD: int = 0, 'Слово'
+        Sentence: int = 1, 'Предложение'
 
     translation_type = models.PositiveSmallIntegerField('Тип перевода',
                                                         choices=TranslationType.choices)
-    english_version = models.CharField('Английский вариант', max_length=250)
+    english_version = models.CharField('Английский вариант', unique=True, max_length=250)
     russian_version = models.CharField('Русский вариант', max_length=250)
     transcription = models.CharField('Транскрипция', max_length=250,
                                      null=True, blank=True)
-    pronunciationd = models.FileField('Произношение', upload_to='pronunciationd',
-                                      null=True, blank=True)
+    pronunciation = models.FileField('Произношение', upload_to='pronunciation',
+                                     null=True, blank=True)
     created = models.DateTimeField('Дата создания', auto_now_add=True)
 
     class Meta:
@@ -25,8 +25,8 @@ class Translation(models.Model):
     def __str__(self):
         return f'{self.english_version} - {self.russian_version}'
 
-    @classmethod
-    def get_types(cls) -> list:
-        """Возвращает label типов"""
-
-        return cls.TranslationType.labels
+    # @classmethod
+    # def get_types(cls) -> list:
+    #     """Возвращает label типов"""
+    #
+    #     return cls.TranslationType.labels

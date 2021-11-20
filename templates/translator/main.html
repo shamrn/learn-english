@@ -2,8 +2,11 @@
 {% load static %}
 
 {% block content %}
-<a href="{% url 'create_translation' %}">Добавить</a>
-{% for type in types %}
-<a href="{% url 'list_translation' type  %}">{{ type }}</a>
-{% endfor %}
+
+<div class="container">
+    <a class="link" href="{% url 'create' %}">Добавить</a>
+    <a class="link" href="{% url 'list' 0  %}">Слова</a>
+    <a class="link" href="{% url 'list' 1  %}">Предложения</a>
+</div>
+
 {% endblock %}

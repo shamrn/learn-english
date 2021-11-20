@@ -10,8 +10,8 @@
         <p>{% if field.errors %} <small>{{ field.errors }}</small>{% endif %}{{ field }}</p>
       {% endfor %}
       {% csrf_token %}
-        <input class="link" type="submit" name="exit" value="Сохранить и выйти">
-        <input class="link" type="submit" name="continue" value="Сохранить и продолжить">
+        <input class="link" type="submit" value="Сохранить">
+        <a class="link" href="{% url 'delete' translation.pk %}">Удалить</a>
     </form>
 </div>
 {% endblock %}

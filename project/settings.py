@@ -43,8 +43,8 @@ INSTALLED_APPS = [
 
     # Apps Installed
     'translator.apps.TranslatorConfig',
+    'account.apps.AccountConfig',
 ]
-
 
 
 MIDDLEWARE = [
@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -139,5 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication and identification config
-LOGIN_URL = 'admin/'
-LOGIN_REDIRECT_URL = 'main/'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'main'

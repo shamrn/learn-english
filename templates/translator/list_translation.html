@@ -4,5 +4,8 @@
 {% block content %}
 
 <a href="{% url 'main' %}">Назад</a>
-
+    {% for item in translations %}
+    <p>{{ item }}</p>
+    <a href="{% url 'update' item.pk %}">редактировать</a>
+    {% endfor %}
 {% endblock %}
