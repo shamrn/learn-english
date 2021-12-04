@@ -1,4 +1,19 @@
+from typing import Union
+
 from django.db import models
+
+
+class TranslationManager(models.Manager):
+    """Manager модели Translation"""
+
+
+class TranslationQuerySet(models.QuerySet):
+    """QuerySet модели Translation"""
+
+    def by_type(self, type: int) -> Union[models.QuerySet, 'TranslationQuerySet']:  # NOQA
+        """Сортировка по типоу"""
+
+        return self.filter(translation_type=type)
 
 
 class Translation(models.Model):
@@ -17,6 +32,8 @@ class Translation(models.Model):
     pronunciation = models.FileField('Произношение', upload_to='pronunciation',
                                      null=True, blank=True)
     created = models.DateTimeField('Дата создания', auto_now_add=True)
+
+    objects = TranslationManager.from_queryset(TranslationQuerySet)()
 
     class Meta:
         verbose_name = 'Перевод слова и предложения'

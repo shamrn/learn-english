@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<a class="link link-exit" href="{% url 'main' %}">&laquo; Назад</a>
+<a class="link link-exit" href="{% url 'list' translation.translation_type %}">&laquo; Назад</a>
 <div class="container">
     <form class="base-form" action="." method="post" enctype="multipart/form-data">
       {% for field in form %}

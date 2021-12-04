@@ -1,5 +1,6 @@
-from .models import Translation
 from django import forms
+
+from .models import Translation
 
 
 class TranslationForm(forms.ModelForm):
