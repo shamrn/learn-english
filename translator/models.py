@@ -2,6 +2,8 @@ from typing import Union
 
 from django.db import models
 
+from translator.parsing import get_transcription
+
 
 class TranslationManager(models.Manager):
     """Manager модели Translation"""
@@ -27,7 +29,7 @@ class Translation(models.Model):
                                                         choices=TranslationType.choices)
     english_version = models.CharField('Английский вариант', unique=True, max_length=250)
     russian_version = models.CharField('Русский вариант', max_length=250)
-    transcription = models.CharField('Транскрипция', max_length=250,
+    transcription = models.CharField("Транскрипция", max_length=250,
                                      null=True, blank=True)
     pronunciation = models.FileField('Произношение', upload_to='pronunciation',
                                      null=True, blank=True)
@@ -41,6 +43,12 @@ class Translation(models.Model):
 
     def __str__(self):
         return f'{self.english_version} - {self.russian_version}'
+
+    def make_transcription(self, word: str):
+        """Присваиваем транскрипцию"""
+
+        self.transcription = get_transcription(word)
+        self.save(update_fields=['transcription'])
 
     # @classmethod
     # def get_types(cls) -> list:

@@ -8,7 +8,8 @@ class TranslationForm(forms.ModelForm):
 
     class Meta:
         model = Translation
-        fields = ['translation_type', 'english_version', 'russian_version', 'transcription']
+        fields = ['translation_type', 'english_version', 'russian_version',
+                  'transcription']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,3 +21,10 @@ class TranslationForm(forms.ModelForm):
                     'placeholder': f"{self.fields[f'{field}'].label}"
                 }
             )
+
+    def save(self, commit=True):
+
+        instance = super().save(commit)
+        instance.make_transcription(self.cleaned_data['english_version'])
+
+        return instance

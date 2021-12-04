@@ -47,23 +47,30 @@ class TranslationCreateView(TranslationBaseView, CreateView):
     form_class = TranslationForm
     success_message = 'Перевод успешно добавлен.'
 
-    def get_success_url(self, **kwargs):
+    def get_success_url(self):
         """Перенаправление исходя из действий пользователя"""
 
-        return reverse_lazy('main') if 'exit' in self.get_form_kwargs()['data'] else reverse_lazy('create')
-
+        return (reverse_lazy('main') if 'exit' in self.get_form_kwargs()['data'] else
+                reverse_lazy('create'))
 
 class TranslationUpdateView(TranslationCreateView, UpdateView):
-    """Изменение перевода"""  # TODO redirect не работает
+    """Изменение перевода"""
 
+    form_class = TranslationForm
     template_name = 'translator/update_translation.html'
     success_message = 'Перевод успешно изменён.'
 
+    def get_success_url(self):
+        """Перенаправление на предыдущую страницу"""
 
-def translation_delete(request, pk):  # NOQA
+        return reverse_lazy(
+            'list', kwargs={'type':self.get_form_kwargs()['data']['translation_type']}
+        )
+
+def translation_delete(request, pk):
     """Удаление перевода"""
 
-    translation = Translation.objects.get(pk=pk)  # NOQA
+    translation = Translation.objects.get(pk=pk)
     translation.delete()
 
     return redirect('list', type=translation.translation_type)
