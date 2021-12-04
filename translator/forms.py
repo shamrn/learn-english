@@ -25,6 +25,8 @@ class TranslationForm(forms.ModelForm):
     def save(self, commit=True):
 
         instance = super().save(commit)
-        instance.make_transcription(self.cleaned_data['english_version'])
+
+        if self.cleaned_data['translation_type'] == 0:
+            instance.make_transcription(self.cleaned_data['english_version'])
 
         return instance
