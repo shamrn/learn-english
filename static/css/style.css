@@ -46,6 +46,14 @@ ul{
     top:15%;
     left:20%;
 }
+.svg-inline--fa{
+    width: calc(2.5vw + 2.5vh);
+    height: calc(2.5vw + 2.5vh);
+    position:absolute;
+    top:13%;
+    left:80%;
+    fill: #ABCDEF;
+}
 
 .form-field{
     margin-top:calc(.5vw + .5vh);
@@ -106,6 +114,13 @@ ul{
     position: absolute;
     left: 35%;
 }
+
+.link-send-translate{
+    padding:calc(.4vw + .4vh) calc(.8vw + .8vh) calc(.4vw + .4vh) calc(.8vw + .8vh);
+    border-radius:calc(.5vw + .5vh);
+    font-size: calc(1vw + 1vh);
+}
+
 .link-update{
     position: absolute;
     left: 90%;
@@ -118,6 +133,7 @@ ul{
     padding-bottom: calc(2vw + 2vh);
 }
 .translate{
+    display: none;
     font-size: calc(1.2vw + 1.2vh);
     margin-top: calc(1.5vw + 1.5vh);
 }
@@ -127,15 +143,6 @@ ul{
 
 /*  ------------------------ SECTION SWITCHER  ----------------------  */
 
-/*.container-switches{*/
-/*    width: 100%;*/
-/*    height: calc(2vw + 2vh);*/
-/*    display: flex;*/
-/*    position: fixed;*/
-/*    top:2%;*/
-/*    left:22%;*/
-/*    background-color: #ABCDEF;*/
-/*}*/
 .container-switches{
     display:flex;
     position: fixed;
@@ -203,4 +210,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.wordEn{
+    color: #000;
 }

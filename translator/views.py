@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
 
 from translator.models import Translation
-from .forms import TranslationForm
+from .forms import TranslationUpdateForm, TranslationCreateForm
 
 
 class TranslationBaseView(SuccessMessageMixin, LoginRequiredMixin):
@@ -44,7 +44,7 @@ class TranslationCreateView(TranslationBaseView, CreateView):
     """Создание перевода"""
 
     template_name = 'translator/create_translation.html'
-    form_class = TranslationForm
+    form_class = TranslationCreateForm
     success_message = 'Перевод успешно добавлен.'
 
     def get_success_url(self):
@@ -53,10 +53,11 @@ class TranslationCreateView(TranslationBaseView, CreateView):
         return (reverse_lazy('main') if 'exit' in self.get_form_kwargs()['data'] else
                 reverse_lazy('create'))
 
+
 class TranslationUpdateView(TranslationCreateView, UpdateView):
     """Изменение перевода"""
 
-    form_class = TranslationForm
+    form_class = TranslationUpdateForm
     template_name = 'translator/update_translation.html'
     success_message = 'Перевод успешно изменён.'
 
@@ -64,8 +65,9 @@ class TranslationUpdateView(TranslationCreateView, UpdateView):
         """Перенаправление на предыдущую страницу"""
 
         return reverse_lazy(
-            'list', kwargs={'type':self.get_form_kwargs()['data']['translation_type']}
+            'list', kwargs={'type': self.get_form_kwargs()['data']['translation_type']}
         )
+
 
 def translation_delete(request, pk):
     """Удаление перевода"""

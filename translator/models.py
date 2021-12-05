@@ -47,8 +47,9 @@ class Translation(models.Model):
     def make_transcription(self, word: str):
         """Присваиваем транскрипцию"""
 
-        self.transcription = get_transcription(word)
-        self.save(update_fields=['transcription'])
+        if transcription:= get_transcription(word):  # NOQA
+            self.transcription = transcription
+            self.save(update_fields=['transcription'])
 
     # @classmethod
     # def get_types(cls) -> list:

@@ -3,16 +3,17 @@ from django import forms
 from .models import Translation
 
 
-class TranslationForm(forms.ModelForm):
-    """Форма для создания и изменение модели Translation"""
+class TranslationUpdateForm(forms.ModelForm):
+    """Форма для редактирования объектов модели Translation"""
 
     class Meta:
         model = Translation
-        fields = ['translation_type', 'english_version', 'russian_version',
-                  'transcription']
+        fields = ['translation_type', 'english_version', 'russian_version', 'transcription']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.initial.update({'transcription': self.instance.transcription})
 
         for field in self.fields:
             self.fields[field].widget.attrs.update(
@@ -21,6 +22,15 @@ class TranslationForm(forms.ModelForm):
                     'placeholder': f"{self.fields[f'{field}'].label}"
                 }
             )
+
+
+class TranslationCreateForm(TranslationUpdateForm):
+    """Форма для создания объектов модели Translation"""
+
+    class Meta(TranslationUpdateForm.Meta):
+        model = Translation
+        TranslationUpdateForm.Meta.fields.remove('transcription')
+        fields = TranslationUpdateForm.Meta.fields
 
     def save(self, commit=True):
 
