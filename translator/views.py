@@ -14,20 +14,6 @@ class TranslationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     model = Translation
 
 
-# class TypeTranslationView(TranslationBaseView, ListView):
-#     """Главная страница"""
-#
-#     template_name = 'translator/main.html'
-
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     """Добавляет в контекст типы переводов ( слова или текст )"""
-    #
-    #     context = super(TypeTranslationListView, self).get_context_data(**kwargs)
-    #     context['types'] = Translation.get_types()
-    #
-    #     return context
-
-
 class TranslationListView(TranslationBaseView, ListView):
     """Список переводов"""
 
@@ -37,7 +23,16 @@ class TranslationListView(TranslationBaseView, ListView):
     def get_queryset(self):
         """Список переводов определенного типа"""
 
-        return Translation.objects.by_type(self.kwargs['type'])
+        translations = Translation.objects.by_type(self.kwargs['type'])
+
+        return translations.order_by('-created') if 'sort' in self.request.GET else translations
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        """Добавляет в контекст тип перевода"""
+
+        context = super(TranslationListView, self).get_context_data(**kwargs)
+        context['type'] = self.kwargs['type']
+        return context
 
 
 class TranslationCreateView(TranslationBaseView, CreateView):

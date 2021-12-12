@@ -3,7 +3,7 @@ from typing import Union
 import requests
 from bs4 import BeautifulSoup
 
-URL = 'https://wooordhunt.ru/word/%s/'
+from django.conf import settings
 
 
 def get_transcription(word: str) -> Union[None, str]:
@@ -24,7 +24,7 @@ def parsing_html(word: str) -> Union[None, BeautifulSoup]:
 
     html_data = None
 
-    response = requests.get(URL % word)
+    response = requests.get(settings.URL_WOOORDHUNT % word)
     if response.status_code == 200:
         html_data = BeautifulSoup(response.content, 'html.parser')
 

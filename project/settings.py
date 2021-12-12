@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r022hzfoohzdbesl_84-mj-2f=22p#_s!8s+$c1rb&!z8bx54i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,3 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Authentication and identification config
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'main'
+
+# Parsing settings
+
+URL_WOOORDHUNT = 'https://wooordhunt.ru/word/%s/'

@@ -13,7 +13,7 @@ class TranslationQuerySet(models.QuerySet):
     """QuerySet модели Translation"""
 
     def by_type(self, type: int) -> Union[models.QuerySet, 'TranslationQuerySet']:  # NOQA
-        """Сортировка по типоу"""
+        """Сортировка по типу"""
 
         return self.filter(translation_type=type)
 

@@ -73,7 +73,7 @@ ul{
     -webkit-box-shadow: 0px 5px 10px 2px rgba(11, 35, 131, 0.5);
     -moz-box-shadow: 0px 5px 10px 2px rgba(11, 35, 131,  0.5);
     box-shadow: 0px 5px 10px 2px rgba(11, 35, 131,  0.5);
-     cursor: pointer;
+    cursor: pointer;
 }
 
 .link:hover{
@@ -147,7 +147,7 @@ ul{
     display:flex;
     position: fixed;
     top:0;
-    background-color: #f5f2fb;
+    background-color: rgba(245, 242, 251, 0.3);
     width: 100%;
     height: calc(2vw + 2vh);
     justify-content: space-around;
@@ -214,4 +214,80 @@ input:checked + .slider:before {
 
 .wordEn{
     color: #000;
+}
+
+@media screen and (max-width: 768px){
+    html{
+        font-size:calc(2vh + 2vw);
+    }
+    body{
+        background-size: auto;
+        background-repeat: no-repeat;
+        overflow-x:hidden;
+    }
+    .link{
+        margin-top:calc(2.2vw + 2.2vh);
+        padding:calc(1.2vw + 1.2vh) calc(2.4vw + 2.4vh) calc(1.2vw + 1.2vh) calc(2.4vw + 2.4vh);
+        border-radius:calc(1vw + 1vh);
+    }
+    .form-field{
+        margin-top:calc(1vw + 1vh);
+        border: 2px solid #ABCDEF;
+        border-radius:calc(1vw + 1vh);
+        padding:calc(.7vw + .7vh) calc(1vw + 1vh) calc(.7vw + .7vh) calc(1vw + 1vh);
+    }
+    .link-exit{
+        top:5%;
+        left:10%;
+    }
+    .container-switches{
+        height: calc(4vw + 4vh);
+    }
+    .switch {
+        transform: translateY(calc(.7vw + .7vh));
+    }
+    .switch-en, .switch-ru, .switch-tr{
+        font-size:calc(2vw + 2vh);
+    }
+    .link-list-translation{
+        left: 10%;
+        top:10%;
+    }
+    .svg-inline--fa{
+        width: calc(3.8vw + 3.8vh);
+        height: calc(3.8vw + 3.8vh);
+        position:absolute;
+        top:14%;
+    }
+    .container-list-translation{
+        margin-top:calc(23vw + 23vh);
+    }
+    .section-translation{
+        margin-top:calc(3vw + 3vh);
+        margin-bottom: calc(2vw + 2vh);
+    }
+    .svg-edit{
+        width:30px;
+        height:30px;
+    }
+    .translate-form{
+        left: 3%;
+    }
+
+    .link-send-translate,.form-field-translation{
+        padding:4px 6px 4px 6px;
+        font-size:15px;
+    }
+    .link-update{
+        left: 85%;
+        height: 5px;
+    }
+    .list-translations{
+        margin-top: calc(3vw + 3vh);
+        padding-bottom: calc(2vw + 2vh);
+    }
+    .translate{
+        font-size: calc(1.5vw + 1.5vh);
+        margin-top: calc(1.5vw + 1.5vh);
+    }
 }
